@@ -39,7 +39,7 @@ public class Ships {
 
     private void generatingShips(){
         for (int i = 5; i > 1; i--) {  // ake dlhe su
-            for (int j = 1; j < 5; j++) {//kolko ich je
+            for (int j = 6-i; j >= 1; j--) {//kolko ich je
                 int z =0;
                 while(z<3 && !generatingShip(i)){
                     z++;
@@ -132,14 +132,14 @@ public class Ships {
                        gameboard[startP.getX()+i][startP.getY()-1] = -1;
                    }
                    if(startP.getY()+1 <=9){
-                       gameboard[startP.getX()-i][startP.getY()+1] = -1;
+                       gameboard[startP.getX()+i][startP.getY()+1] = -1;
                    }
                }
                //                   hore dole
-               if(startP.getX()-1 <=9){
+               if(startP.getX()-1 >=0){
                    gameboard[startP.getX()-1][startP.getY()] = -1;
                }
-               if(startP.getX()+num >=0){
+               if(startP.getX()+num <=9){
                    gameboard[startP.getX()+num][startP.getY()] = -1;
                }
                return true;
