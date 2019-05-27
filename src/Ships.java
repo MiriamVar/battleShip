@@ -38,19 +38,19 @@ public class Ships {
     }
 
     private void generatingShips(){
-////        for (int i = 5; i > 1; i--) {  // ake dlhe su
-////            for (int j = 1; j < 5; j++) {//kolko ich je
-////                int z =0;
-////                while(z<3 && !generatingShip(i)){
-////                    z++;
-////                }
-////            }
-////        }
-        for (int i = 1; i < 5; i++) {  // ake dlhe su
-            for (int j = 5; j >1; j--) {//kolko ich je
-                generatingShip(j);
+        for (int i = 5; i > 1; i--) {  // ake dlhe su
+            for (int j = 1; j < 5; j++) {//kolko ich je
+                int z =0;
+                while(z<3 && !generatingShip(i)){
+                    z++;
+                }
             }
         }
+//        for (int i = 1; i < 5; i++) {  // ake dlhe su
+//            for (int j = 5; j >1; j--) {//kolko ich je
+//                generatingShip(j);
+//            }
+//        }
 
 //        generatingShip(5);
 //
@@ -108,7 +108,48 @@ public class Ships {
                return true;
            }
            access= true;
-           
+
+
+
+
+
+           //           kontolujem smer doprava
+           for (int i =1; i<num; i++){
+               if (startP.getX()+i>9){
+                   access = false;
+                   break;
+               }
+               if(gameboard[startP.getX()+i][startP.getY()] != 0){
+                   access = false;
+                   break;
+               }
+           }
+           if(access){
+               for (int i =0; i<num; i++){
+                   gameboard[startP.getX()+i][startP.getY()] = 1;
+//                   boky
+                   if(startP.getY()-1 >=0){
+                       gameboard[startP.getX()+i][startP.getY()-1] = -1;
+                   }
+                   if(startP.getY()+1 <=9){
+                       gameboard[startP.getX()-i][startP.getY()+1] = -1;
+                   }
+               }
+               //                   hore dole
+               if(startP.getX()-1 <=9){
+                   gameboard[startP.getX()-1][startP.getY()] = -1;
+               }
+               if(startP.getX()+num >=0){
+                   gameboard[startP.getX()+num][startP.getY()] = -1;
+               }
+               return true;
+           }
+           access= true;
+
+
+
+
+
 //           kontolujem smer dole
            for (int i =1; i<num; i++){
                if (startP.getY()-i<0){
@@ -137,6 +178,41 @@ public class Ships {
                }
                if(startP.getY()-num >=0){
                    gameboard[startP.getX()][startP.getY()-num] = -1;
+               }
+               return true;
+           }
+           access= true;
+
+
+
+           //           kontolujem smer dolava
+           for (int i =1; i<num; i++){
+               if (startP.getX()-i<0){
+                   access = false;
+                   break;
+               }
+               if(gameboard[startP.getX()-i][startP.getY()] != 0){
+                   access = false;
+                   break;
+               }
+           }
+           if(access){
+               for (int i =0; i<num; i++){
+                   gameboard[startP.getX()-i][startP.getY()] = 1;
+//                   boky
+                   if(startP.getY()-1 >=0){
+                       gameboard[startP.getX()-i][startP.getY()-1] = -1;
+                   }
+                   if(startP.getY()+1 <=9){
+                       gameboard[startP.getX()+i][startP.getY()-1] = -1;
+                   }
+               }
+               //                   hore dole
+               if(startP.getX()-1 >=0){
+                   gameboard[startP.getX()-1][startP.getY()] = -1;
+               }
+               if(startP.getX()+num <=9){
+                   gameboard[startP.getX()+num][startP.getY()] = -1;
                }
                return true;
            }
